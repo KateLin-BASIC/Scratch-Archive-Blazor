@@ -1,0 +1,46 @@
+﻿@page "/"
+
+@inject HttpClient Http
+@inject IJSRuntime JS
+
+@using Scratch_Archive.Models;
+
+<div id="main">
+    <h1>
+        <i class="bi bi-archive-fill"></i>
+        Scratch Archive
+    </h1>
+
+    <p>
+        본 웹사이트는 스크래치 2.0 이전의 스몰토크로 작성되었던 스크래치 1.X 버전들을 모아둔 곳입니다.<br>
+        아무 버전이나 선택해 웹 브라우저에서 실행해 보세요.
+    </p>
+
+    <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">버전을 선택해 주세요.</button>
+        <div class="dropdown-menu">
+            @if (versions != null)
+            {
+                @foreach (var version in versions)
+                {
+                    <a class="dropdown-item" href="player/@version.Id">@version.Name</a>
+                }
+            }
+            else
+            {
+                <a class="dropdown-item">로드중...</a>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private ScratchVersion[]? versions;
+
+    protected override async Task OnInitializedAsync()
+    {
+        versions = await Http.GetFromJsonAsync<ScratchVersion[]>("assets/data/versions.json");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender) => await JS.InvokeVoidAsync("resetBackgroundColor"); //SqueakJS가 바꾼 배경 색상 복원
+}

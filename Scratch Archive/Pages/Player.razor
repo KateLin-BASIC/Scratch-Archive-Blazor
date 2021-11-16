@@ -1,0 +1,38 @@
+﻿@page "/player/{id}"
+
+@inject HttpClient Http
+@inject IJSRuntime JS
+@inject NavigationManager Navigator
+
+@using Scratch_Archive.Models;
+
+<div id="player">
+    <canvas id="canvas"></canvas>
+</div>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JS.InvokeVoidAsync("resizeCanvas"); //캔버스를 화면 크기에 맞춤
+        await JS.InvokeVoidAsync("registerEvent"); //창의 크기가 바뀌면 resizeCanvas(); 함수를 호출하도록 이벤트로 등록함
+
+        byte versionId = 0; //버전 아이디 (기본은 0)
+        var versions = await Http.GetFromJsonAsync<ScratchVersion[]>("assets/data/versions.json"); //버전 json 불러오기
+
+        if (versions != null && byte.TryParse(this.Id, out versionId) && (versionId + 1) <= versions.Length)
+        {
+            Console.WriteLine("Starting SqueakJS VM...");
+            Console.WriteLine($"Scratch Version: {versions[versionId].Name} ({versions[versionId].Id})");
+            Console.WriteLine($"Scratch Image Url: {versions[versionId].FileUrl}");
+
+            await JS.InvokeVoidAsync("SqueakJS.runSqueak", $"{Navigator.BaseUri}{versions[versionId].FileUrl}", "canvas", new { Fullscreen = true });
+        }
+        else
+        {
+            Navigator.NavigateTo("/");
+        }
+    }
+}

@@ -1,0 +1,95 @@
+﻿/* Web Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css");
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Noto Sans KR';
+    font-weight: lighter;
+}
+
+/* Blazor System UI */
+#blazor-load-ui {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+#blazor-404-ui {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+    #blazor-404-ui .bi {
+        font-size: 40px;
+    }
+
+    #blazor-404-ui .header {
+        font-weight: 900;
+    }
+
+    #blazor-404-ui .label {
+        font-weight: 300;
+    }
+
+/* Main UI */
+#main {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+    #main .bi {
+        font-size: 40px;
+    }
+
+    #main .btn {
+        background: #b73844;
+        border-style: none;
+    }
+
+    #main .dropdown-item {
+        font-weight: 100;
+        font-size: 14px
+    }
+
+    #main .dropdown-menu {
+        width: 170px;
+        max-height: 200px;
+        overflow-y: auto
+    }
+
+/* Player UI */
+#player {
+    width: 100%;
+    height: 100%;
+}
