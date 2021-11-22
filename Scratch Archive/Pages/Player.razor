@@ -5,6 +5,7 @@
 @inject NavigationManager Navigator
 
 @using Scratch_Archive.Models;
+@using System.Web;
 
 <div id="player">
     <canvas id="canvas"></canvas>
@@ -28,7 +29,7 @@
             Console.WriteLine($"Scratch Version: {versions[versionId].Name} ({versions[versionId].Id})");
             Console.WriteLine($"Scratch Image Url: {versions[versionId].FileUrl}");
 
-            await JS.InvokeVoidAsync("SqueakJS.runSqueak", $"{Navigator.BaseUri}{versions[versionId].FileUrl}", "canvas", new { Fullscreen = true });
+            await JS.InvokeVoidAsync("SqueakJS.runSqueak", Navigator.BaseUri + versions[versionId].FileUrl, "canvas", new { Fullscreen = true });
         }
         else
         {
