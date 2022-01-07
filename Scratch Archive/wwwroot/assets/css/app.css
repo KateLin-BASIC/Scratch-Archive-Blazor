@@ -7,7 +7,7 @@ body {
     height: 100%;
     margin: 0;
     overflow: hidden;
-    font-family: 'Noto Sans KR';
+    font-family: 'Noto Sans KR', serif;
     font-weight: lighter;
 }
 
@@ -16,7 +16,6 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
 
@@ -43,7 +42,6 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
 }
@@ -64,7 +62,6 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
 

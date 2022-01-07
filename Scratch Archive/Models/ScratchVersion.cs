@@ -5,10 +5,17 @@ using System.Threading.Tasks;
 
 namespace Scratch_Archive.Models
 {
-    public class ScratchVersion
+    public abstract class ScratchVersion
     {
-        public byte Id { get; set; }
-        public string? Name { get; set; }
-        public string? FileUrl { get; set; }
+        protected ScratchVersion(byte id, string name, string fileUrl)
+        {
+            Id = id;
+            Name = name;
+            FileUrl = fileUrl;
+        }
+
+        public byte Id { get; }
+        public string Name { get; }
+        public string FileUrl { get; }
     }
 }
